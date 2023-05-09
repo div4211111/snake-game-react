@@ -1,0 +1,55 @@
+@import "variables";
+
+@function remtopx($value) {
+  $PxValue: ($value * 16);
+
+  @return $PxValue;
+}
+
+@function is-important($important) {
+  @return #{if($important, "!important", "")};
+}
+
+@mixin adaptive-propertyRem($property, $pcSize, $mobSize, $important: false) {
+  $pcSizePx: remtopx($pcSize);
+  $mobSizePx: remtopx($mobSize);
+  $addSize: $pcSizePx - $mobSizePx;
+
+  #{$property}: $pcSize + rem;
+
+  @media (max-width: #{$LargePC + px}) {
+    #{$property}: calc(
+        #{$mobSize + rem} + #{$addSize} * ((100vw - 320px) / #{$LargePC - 320})
+      )
+      is-important($important);
+  }
+
+  @media (width <= 320px) {
+    #{$property}: $mobSize + rem is-important($important);
+  }
+}
+
+@mixin adaptive-propertyPx($property, $pcSize, $mobSize, $important: false) {
+  $addSize: $pcSize - $mobSize;
+
+  #{$property}: $pcSize + px is-important($important);
+
+  @media (max-width: #{$LargePC + px}) {
+    #{$property}: calc(
+        #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$LargePC - 320})
+      )
+      is-important($important);
+  }
+
+  @media (width <= 320px) {
+    #{$property}: $mobSize + px is-important($important);
+  }
+}
+
+@function calcwidth($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+
+  @return calc(
+    #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$LargePC - 320})
+  );
+}

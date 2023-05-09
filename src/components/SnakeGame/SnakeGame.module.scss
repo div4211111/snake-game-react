@@ -1,0 +1,189 @@
+@import "../../styles/mixins";
+
+.container {
+  background: linear-gradient(
+    150.26deg,
+    rgb(23 85 83 / 70%) 1.7%,
+    rgb(67 217 173 / 9.1%) 81.82%
+  );
+  border: 1px solid #0c1616;
+  box-shadow: inset 0 2px 0 rgb(255 255 255 / 30%);
+  backdrop-filter: blur(32px);
+  border-radius: 8px;
+  width: auto;
+
+  @include adaptive-propertyPx(padding, 10, 5);
+}
+
+.bolts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bolt img {
+  width: 100%;
+}
+
+.bolt {
+  background: radial-gradient(
+    73.08% 73.08% at 50% 26.92%,
+    #196c6a 15.1%,
+    #114b4a 100%
+  );
+  box-shadow: 2px 2px 4px #0d4341, inset 0 1px 2px #1a8277;
+  color: #114944;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+
+  @include adaptive-propertyPx(height, 20, 10);
+  @include adaptive-propertyPx(width, 20, 10);
+  @include adaptive-propertyPx(padding, 5, 2);
+}
+
+.content {
+  @include adaptive-propertyPx(padding, 25, 5);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  @include adaptive-propertyPx(gap, 25, 5);
+}
+
+.canvas {
+  background: rgb(1 22 39 / 84%);
+  box-shadow: inset 1px 5px 11px rgb(2 18 27 / 71%);
+  border-radius: 8px;
+
+  @include adaptive-propertyPx(width, 250, 100);
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
+.information_block {
+  background: rgb(1 20 35 / 19%);
+  border-radius: 8px;
+
+  @include adaptive-propertyPx(padding, 13, 7);
+  @include adaptive-propertyPx(margin-bottom, 15, 8);
+}
+
+.text {
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 15px;
+
+  @include adaptive-propertyPx(margin-bottom, 15, 8);
+}
+
+.text:first-child {
+  margin-bottom: 0;
+}
+
+.arrow_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  margin-top: 3px;
+}
+
+.arrow_item {
+  @include adaptive-propertyPx(width, 49, 24);
+  @include adaptive-propertyPx(height, 28, 14);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #010c15;
+  border: 1px solid #1e2d3d;
+  border-radius: 8px;
+}
+
+.apples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20px);
+  grid-template-rows: min-content min-content;
+
+  @include adaptive-propertyPx(gap, 18, 14);
+
+  flex-grow: 1;
+
+  @include adaptive-propertyPx(margin-bottom, 10, 5);
+}
+
+.apples_item {
+  @include adaptive-propertyPx(width, 8, 5);
+  @include adaptive-propertyPx(height, 8, 5);
+
+  justify-self: center;
+  border-radius: 100%;
+  background: var(--accent-two);
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.apples_item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(2);
+  background: var(--accent-two);
+  border-radius: 100%;
+  opacity: 0.2;
+}
+
+.apples_item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(3);
+  background: var(--accent-two);
+  border-radius: 100%;
+  opacity: 0.1;
+}
+
+.apples_item_active {
+  opacity: 0.5;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  @include adaptive-propertyPx(padding-top, 10, 5);
+  @include adaptive-propertyPx(padding-bottom, 10, 5);
+  @include adaptive-propertyPx(padding-right, 14, 7);
+  @include adaptive-propertyPx(padding-left, 14, 7);
+  @include adaptive-propertyPx(font-size, 16, 14);
+
+  gap: 10px;
+  align-self: flex-end;
+  border: 1px solid #fff;
+
+  @include adaptive-propertyPx(border-radius, 8, 4);
+
+  &:hover {
+    border: 1px solid var(--accent-one);
+    color: var(--accent-one);
+  }
+
+  &:focus {
+    outline: 2px solid var(--secondary-three);
+  }
+}
